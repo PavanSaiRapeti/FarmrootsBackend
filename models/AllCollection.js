@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-
 const counterSchema = new mongoose.Schema({
     name: {
         type: String,

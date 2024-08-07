@@ -31,38 +31,12 @@ io.on('connection', (socket) => {
   });
 });
 
-io.on('connection', (socket) => {
-  console.log('New client connected');
-
-  socket.on('newBlog', (blog) => {
-    io.emit('newBlog', blog);
-  });
-
-  socket.on('updateBlog', (updatedBlog) => {
-    io.emit('updateBlog', updatedBlog);
-  });
-
-  socket.on('deleteBlog', (blogId) => {
-    io.emit('deleteBlog', blogId);
-  });
-
-  socket.on('newComment', (comment) => {
-    io.emit('newComment', comment);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-});
-
-const mongoURI = process.env.MONGO_URI ;
-mongoose.set('strictQuery', true);
-mongoose.connect(mongoURI, {
+const port = process.env.PORT || 3001;
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
   console.log('Connected to MongoDB');
-  const port = process.env. add || 3001;
   server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
